@@ -1,0 +1,2926 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cafetería El Abuelo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cafetería El Abuelo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ===== RESET Y VARIABLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #5D4037; /* Café oscuro elegante */
+      --secondary: #D7CCC8; /* Beige claro */
+      --accent: #A1887F; /* Café medio */
+      --gold: #D4AF37; /* Dorado elegante */
+      --light: #F5F5F5; /* Fondo claro */
+      --dark: #3E2723; /* Café muy oscuro */
+      --success: #2E7D32; /* Verde para botones */
+      --text-dark: #212121;
+      --text-light: #757575;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===== ESTILOS GENERALES ===== */
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #F9F5F0 0%, #F0EBE6 100%);
+      color: var(--text-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(93, 64, 55, 0.03) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    /* ===== HEADER ELEGANTE ===== */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(93, 64, 55, 0.98);
+      box-shadow: var(--shadow-md);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+    }
+
+    header h1::before {
+      content: '☕';
+      font-size: 1.8rem;
+      color: var(--gold);
+    }
+
+    /* ===== NAVEGACIÓN ELEGANTE ===== */
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    }
+
+    /* ===== BOTÓN MODO OSCURO ===== */
+    #toggleTema {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+      margin-top: 0.5rem;
+    }
+
+    #toggleTema:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ===== CONTENIDO PRINCIPAL ===== */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== SECCIONES ELEGANTES ===== */
+    section {
+      margin: 3rem 0;
+      padding-top: 2rem;
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 3px;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      letter-spacing: 1px;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    section h3 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin: 1.5rem 0 1rem;
+      padding-left: 0.5rem;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* ===== PRODUCTOS - DISEÑO ELEGANTE ===== */
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--gold));
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card .info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .card .info strong {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    .card .info p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .card .info span {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .card .info span::before {
+      content: '💰 ';
+      font-size: 0.9rem;
+    }
+
+    .card button {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      margin-top: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .card button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .card button:hover {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      box-shadow: 0 6px 20px rgba(93, 64, 55, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ===== CARRITO ELEGANTE ===== */
+    #carritoBox {
+      position: fixed;
+      right: 2rem;
+      bottom: 5rem;
+      background: white;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      padding: 1.5rem;
+      width: 350px;
+      max-height: 70vh;
+      overflow: auto;
+      display: none;
+      z-index: 90;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    #carritoBox h3 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #carritoBox h3::before {
+      content: '🛒';
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 0.8rem;
+      margin: 0.8rem 0;
+      padding: 0.8rem;
+      background: rgba(245, 245, 245, 0.5);
+      border-radius: var(--radius-sm);
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .item span:first-child {
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .item button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .item button:hover {
+      background: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .item button:last-child {
+      background: #e53935;
+    }
+
+    .item button:last-child:hover {
+      background: #c62828;
+    }
+
+    .total {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: right;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--gold);
+    }
+
+    /* ===== FORMULARIO ELEGANTE ===== */
+    .form {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .form input,
+    .form textarea,
+    .form select {
+      padding: 0.9rem 1.2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(245, 245, 245, 0.5);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      color: var(--text-dark);
+    }
+
+    .form input:focus,
+    .form textarea:focus,
+    .form select:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+      background: white;
+    }
+
+    .btn-enviar {
+      background: linear-gradient(135deg, var(--success) 0%, #1B5E20 100%);
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+
+    .btn-enviar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+    }
+
+    #btnCarrito {
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: white;
+      border: none;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #btnCarrito:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 8px 25px rgba(93, 64, 55, 0.4);
+    }
+
+    /* ===== MODALES ELEGANTES ===== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      width: 90%;
+      max-width: 400px;
+      max-height: 85vh;
+      overflow: auto;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--primary));
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .modal h3 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    .modal button {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: white;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+      color: var(--text-dark);
+      text-align: left;
+      padding-left: 1.2rem;
+    }
+
+    .modal button:hover {
+      background: rgba(93, 64, 55, 0.05);
+      border-color: var(--gold);
+      transform: translateX(5px);
+    }
+
+    /* ===== CREPA MODAL ELEGANTE ===== */
+    .crepa-section {
+      margin: 1.2rem 0;
+      padding: 1.2rem;
+      background: rgba(245, 245, 245, 0.5);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--gold);
+    }
+
+    .crepa-section strong {
+      display: block;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .opciones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    .opciones label {
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dark);
+      padding: 0.4rem;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .opciones label:hover {
+      background: rgba(93, 64, 55, 0.05);
+    }
+
+    .crepa-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-confirmar,
+    .btn-cancelar {
+      flex: 1;
+      padding: 1rem;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .btn-confirmar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: white;
+    }
+
+    .btn-confirmar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(93, 64, 55, 0.3);
+    }
+
+    .btn-cancelar {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-dark);
+    }
+
+    .btn-cancelar:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    /* ===== FOOTER ELEGANTE ===== */
+    footer {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      color: white;
+      padding: 3rem 1.5rem;
+      margin-top: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    footer h3 {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+    }
+
+    footer h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    footer p {
+      margin: 0.8rem 0;
+      font-size: 1rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 1.5rem auto;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .footer-copyright {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-top: 1rem;
+    }
+
+    /* ===== MODO OSCURO ELEGANTE ===== */
+    body.dark {
+      background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+      color: #e0e0e0;
+    }
+
+    body.dark::before {
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(93, 64, 55, 0.05) 0%, transparent 50%);
+    }
+
+    body.dark .card {
+      background: #1e1e1e;
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark .card .info {
+      color: #b0b0b0;
+    }
+
+    body.dark .card .info strong {
+      color: #ffffff;
+    }
+
+    body.dark .card .info span {
+      color: var(--gold);
+    }
+
+    body.dark .form input,
+    body.dark .form textarea,
+    body.dark .form select {
+      background: #2d2d2d;
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e0e0e0;
+    }
+
+    body.dark #carritoBox {
+      background: #1e1e1e;
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark .modal {
+      background: #1e1e1e;
+      color: #e0e0e0;
+    }
+
+    body.dark .modal button {
+      background: #2d2d2d;
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e0e0e0;
+    }
+
+    body.dark .crepa-section {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark .opciones label {
+      color: #e0e0e0;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 768px) {
+      .header-content {
+        gap: 0.8rem;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      nav {
+        gap: 0.4rem;
+      }
+      
+      nav a {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.85rem;
+      }
+      
+      .productos {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.2rem;
+      }
+      
+      #carritoBox {
+        right: 1rem;
+        left: 1rem;
+        width: auto;
+        bottom: 5rem;
+      }
+      
+      #btnCarrito {
+        right: 1rem;
+        bottom: 1rem;
+        width: 56px;
+        height: 56px;
+      }
+      
+      .modal {
+        width: 95%;
+        padding: 1.5rem;
+      }
+      
+      .opciones {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 0 1rem;
+      }
+      
+      section h2 {
+        font-size: 1.6rem;
+      }
+      
+      .productos {
+        grid-template-columns: 1fr;
+      }
+      
+      .card .info {
+        padding: 1.2rem;
+      }
+      
+      footer {
+        padding: 2rem 1rem;
+      }
+      
+      footer h3 {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* ===== ANIMACIONES Y EFECTOS ESPECIALES ===== */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .card:hover .info strong {
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    /* ===== SCROLLBAR PERSONALIZADA ===== */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    body.dark ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+
+
+<!-- ===== MODALES ===== -->
+
+
+
+
+
+
+
+<div class="modal-backdrop" id="proteinaModal">
+  <div class="modal">
+    <h3>Elige proteína 🍗🍤</h3>
+
+    <button onclick="confirmarProteina('Pollo Crujiente',20)">Pollo Crujiente (+$20)</button>
+    <button onclick="confirmarProteina('Pollo a la plancha',20)">Pollo a la plancha (+$20)</button>
+    <button onclick="confirmarProteina('Arrachera',30)">Arrachera (+$30)</button>
+    <button onclick="confirmarProteina('Camarón',30)">Camarón (+$30)</button>
+    <button onclick="confirmarProteina('Queso panela',30)">Queso panela (+$30)</button>
+    <button onclick="confirmarProteina('Champiñones',20)">Champiñones (+$20)</button>
+
+    <button onclick="confirmarProteina('Sin proteína',0)">Sin proteína</button>
+    <button onclick="cerrarProteinaModal()">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal-backdrop" id="milkModal">
+  <div class="modal">
+    <h3>Elige tu tipo de leche 🥛</h3>
+    <button onclick="confirmarLeche('Leche entera')">Leche entera</button>
+    <button onclick="confirmarLeche('Leche deslactosada')">Leche deslactosada</button>
+    <button onclick="confirmarLeche('Agua')">Agua</button>
+    <button onclick="cerrarModal()">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- ===== POPUP PAPAS HAMBURGUESA ===== -->
+<div class="modal-backdrop" id="papasModal">
+  <div class="modal">
+    <h3>¿Tu hamburguesa con papas? 🍟</h3>
+    <button onclick="confirmarPapas(true)">Sí, con papas (+$25)</button>
+    <button onclick="confirmarPapas(false)">No, sin papas</button>
+    <button onclick="cerrarPapasModal()">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal-backdrop" id="suizasModal">
+  <div class="modal">
+    <h3>Elige la salsa para tus enchiladas suizas 🌶️</h3>
+
+    <button onclick="confirmarSuizas('Enchiladas suizas en crema de champiñones',80)">
+      Crema de champiñones
+    </button>
+
+    <button onclick="confirmarSuizas('Enchiladas suizas en crema de chipotle',80)">
+      Crema de chipotle
+    </button>
+
+    <button onclick="confirmarSuizas('Enchiladas suizas en salsa verde',80)">
+      Salsa verde
+    </button>
+
+    <button onclick="confirmarSuizas('Enchiladas suizas en salsa roja',80)">
+      Salsa roja
+    </button>
+
+    <button onclick="confirmarSuizas('Enchiladas suizas en crema de poblano',80)">
+      Crema de poblano
+    </button>
+
+    <button onclick="cerrarSuizas()">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="modal-backdrop" id="chilaquilesModal">
+  <div class="modal">
+    <h3>¿Cómo quieres tus chilaquiles? 🌶️</h3>
+
+    <button onclick="confirmarChilaquiles('Sencillos',69)">Sencillos (+$69)</button>
+    <button onclick="confirmarChilaquiles('Con huevo',79)">Con huevo (+$79)</button>
+    <button onclick="confirmarChilaquiles('Con pollo Crujiente',79)">Con pollo Crujiente (+$79)</button>
+<button onclick="confirmarChilaquiles('Con pollo a la plancha',79)">Con pollo a la plancha (+$79)</button>
+    <button onclick="confirmarChilaquiles('Con arrachera',89)">Con arrachera (+$89)</button>
+
+    <button onclick="cerrarChilaquilesModal()">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ===== MODAL CHEESE CAKE ===== -->
+<div class="modal-backdrop" id="cheeseCakeModal">
+  <div class="modal">
+    <h3>Elige tu tipo de Cheese Cake 🍰</h3>
+    <button onclick="confirmarCheeseCake('Cheese Cake de Lotus',59)">Cheese Cake de Lotus (+$59)</button>
+    <button onclick="confirmarCheeseCake('Cheese Cake de Frutos Rojos',59)">Cheese Cake de Frutos Rojos (+$59)</button>
+    <button onclick="confirmarCheeseCake('Cheese Cake de Tortuga',59)">Cheese Cake de Tortuga (+$59)</button>
+    <button onclick="cerrarCheeseCakeModal()">Cancelar</button>
+  </div>
+</div>
+
+<!-- ===== MODAL SABOR DE HELADO ===== -->
+<div class="modal-backdrop" id="heladoModal">
+  <div class="modal">
+    <h3>Elige el sabor del helado 🍦</h3>
+    <button onclick="confirmarHelado('Fresa')">Helado de Fresa</button>
+    <button onclick="confirmarHelado('Vainilla')">Helado de Vainilla</button>
+    <button onclick="confirmarHelado('Chocolate')">Helado de Chocolate</button>
+    <button onclick="confirmarHelado('Galleta')">Helado de Galleta</button>
+    <button onclick="cerrarHeladoModal()">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="modal-backdrop" id="bonelessModal">
+  <div class="modal">
+    <h3>¿Cómo quieres tus boneless? 🍗</h3>
+
+    <button onclick="confirmarBoneless('Boneless 250g sencillos', 120)">
+      Sencillos - $120
+    </button>
+
+    <button onclick="confirmarBoneless('Boneless 250g con papas', 145)">
+      Con papas - $145
+    </button>
+
+    <button onclick="cerrarBoneless()">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="modal-backdrop" id="crepaModal">
+  <div class="modal">
+    <h3>Personaliza tu crepa</h3>
+
+    <div class="crepa-section">
+      <strong>Tipo de crepa</strong>
+      <select id="tipoCrepa">
+        <option value="Dulce">Dulce</option>
+        <option value="Salada">Salada</option>
+      </select>
+    </div>
+
+    <div class="crepa-section">
+      <strong>Untables</strong>
+      <div class="opciones">
+        <label><input type="checkbox" value="Queso crema"> Queso crema</label>
+        <label><input type="checkbox" value="Mermelada"> Mermelada</label>
+        <label><input type="checkbox" value="Manzana"> Manzana</label>
+        <label><input type="checkbox" value="Lotus"> Lotus</label>
+        <label><input type="checkbox" value="Nutella"> Nutella</label>
+        <label><input type="checkbox" value="Cremino"> Cremino</label>
+        <label><input type="checkbox" value="Crema de maní"> Crema de maní</label>
+      </div>
+    </div>
+
+    <div class="crepa-section">
+      <strong>Frutas</strong>
+      <div class="opciones">
+        <label><input type="checkbox" value="Fresas"> Fresas</label>
+        <label><input type="checkbox" value="Plátano"> Plátano</label>
+        <label><input type="checkbox" value="Frutos rojos"> Frutos rojos</label>
+        <label><input type="checkbox" value="Manzana"> Manzana</label>
+      </div>
+    </div>
+
+    <div class="crepa-section">
+      <strong>Toppings</strong>
+      <div class="opciones">
+        <label><input type="checkbox" value="Lechera"> Lechera</label>
+        <label><input type="checkbox" value="Caramelo"> Caramelo</label>
+        <label><input type="checkbox" value="Mazapán"> Mazapán</label>
+        <label><input type="checkbox" value="Chispas de chocolate"> Chispas de chocolate</label>
+        <label><input type="checkbox" value="Galleta Oreo"> Galleta Oreo</label>
+        <label><input type="checkbox" value="Chocolate"> Chocolate</label>
+      </div>
+    </div>
+
+    <div class="crepa-section">
+      <strong>Ingredientes salados</strong>
+      <div class="opciones">
+        <label><input type="checkbox" value="Champiñones"> Champiñones</label>
+        <label><input type="checkbox" value="Espinacas"> Espinacas</label>
+        <label><input type="checkbox" value="Carnes frías"> Carnes frías</label>
+        <label><input type="checkbox" value="Boloñesa"> Boloñesa</label>
+      </div>
+    </div>
+
+    <div class="crepa-actions">
+      <button class="btn-confirmar" onclick="confirmarCrepa()">Agregar</button>
+      <button class="btn-cancelar" onclick="cerrarCrepaModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <h1> Cafetería El Abuelo</h1>
+  <nav>
+    <a href="#bebidas">Bebidas</a>
+     <a href="#ensaladas">Ensaladas</a>
+    <a href="#platillos">Platillos</a>
+    <a href="#pastas">Pastas</a>
+    <a href="#hamburguesas">Hamburguesas</a>
+    <a href="#baguettes">Baguettes</a>
+    <a href="#quesadillas">Quesadillas</a>
+    <a href="#chilaquiles">Chilaquiles</a>
+    <a href="#enchiladas">Enchiladas</a>
+    <a href="#otros">Otros</a>
+    <a href="#postres">Postres</a>
+    <a href="#crepas">Crepas</a>
+  </nav>
+  <button id="toggleTema" onclick="toggleTema()" style="margin-top:10px;padding:6px 12px;border-radius:999px;border:none;cursor:pointer;">
+    🌙 Modo oscuro
+  </button>
+</header>
+
+<main>
+
+
+
+
+
+<section id="bebidas">
+  <h2>🥤 Bebidas</h2>
+
+  <h3>☕ Cafés</h3>
+  <div class="productos">
+    <div class="card"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd"><div class="info"><strong>Espresso</strong><span>$29 MXN</span><button onclick="agregar('Espresso',29)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzYV62ZYkrN-IF9l7xH0ecGLTmRK9TDJlTjw&s"><div class="info"><strong>Café Americano</strong><span>$29 MXN</span><button onclick="agregar('Café Americano',29)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ_I7rXthWcpgIreQwO3cr1P5DIZ_9vcjtSw&s"><div class="info"><strong>Café de Olla</strong><span>$29 MXN</span><button onclick="agregarConLeche('Café de Olla',29)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHMtZ9AZrAplzayMVW9MPjFMYr-85YlnT63A&s"><div class="info"><strong>Chocolate Caliente</strong><span>$29 MXN</span><button onclick="agregarConLeche('Chocolate Caliente',29)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62"><div class="info"><strong>Tés</strong><span>$25 MXN</span><button onclick="agregar('Tés',25)">Agregar</button></div></div>
+  </div>
+
+  <h3>🥤 Refrescos</h3>
+  <div class="productos">
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBpTgxW2MuaOnjXsvNXHrA16fsxaw0JkeKNA&s"><div class="info"><strong>Coca-Cola</strong><span>$25 MXN</span><button onclick="agregar('Coca-Cola',25)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcMEaTv0V_fPhdwzSGzd3luR6j6bR2IhmsRw&s"><div class="info"><strong>Coca-Cola Light</strong><span>$25 MXN</span><button onclick="agregar('Coca-Cola Light',25)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuwfyPonH0cPvqO_SELhyYHAZUmRYluj5n2w&s"><div class="info"><strong>Sprite</strong><span>$20 MXN</span><button onclick="agregar('Sprite',20)">Agregar</button></div></div>
+    <div class="card"><img src="https://resources.coca-colaentuhogar.com/media/catalog/product/m/u/mundet_355ml_12_lata-100.jpg"><div class="info"><strong>Sidral Mundet</strong><span>$20 MXN</span><button onclick="agregar('Sidral Mundet',20)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaOfQ2xFQBZ40nrCubeRHDqxxDWyYdRpt2yw&s"><div class="info"><strong>Agua Mineral</strong><span>$27 MXN</span><button onclick="agregar('Agua Mineral',27)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d"><div class="info"><strong>Agua Natural</strong><span>$15 MXN</span><button onclick="agregar('Agua Natural',15)">Agregar</button></div></div>
+  </div>
+
+  <h3>🥛 Lattes</h3>
+  <div class="productos">
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhzJ_kT7Kyw6TrKseGiU9Y8zXQsD3Gf0uM0Q&s"><div class="info"><strong>Latte Tiramisú</strong><span>$55 MXN</span><button onclick="agregarConLeche('Latte Tiramisú',55)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOhaSzIOaJ2M_GalZfInH6GK2Q6zHMtj2bWQ&s"><div class="info"><strong>Latte Oreo</strong><span>$49 MXN</span><button onclick="agregarConLeche('Latte Oreo',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"><div class="info"><strong>Capuccino</strong><span>$49 MXN</span><button onclick="agregarConLeche('Capuccino',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61"><div class="info"><strong>Latte Nutella</strong><span>$59 MXN</span><button onclick="agregarConLeche('Latte Nutella',59)">Agregar</button></div></div>
+    <div class="card"><img src="https://cdn7.kiwilimon.com/recetaimagen/41477/640x640/56606.jpg.jpg"><div class="info"><strong>Latte Mazapán</strong><span>$49 MXN</span><button onclick="agregarConLeche('Latte Mazapán',49)">Agregar</button></div></div>
+     <div class="card"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c"><div class="info"><strong>Latte de Horchata</strong><span>$49 MXN</span><button onclick="agregarConLeche('Latte de Horchata',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb"><div class="info"><strong>Latte de Frutos Rojos</strong><span>$49 MXN</span><button onclick="agregarConLeche('Latte de Frutos Rojos',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c"><div class="info"><strong>Latte de Baileys</strong><span>$69 MXN</span><button onclick="agregarConLeche('Latte de Baileys',69)">Agregar</button></div></div>
+  </div>
+  </div>
+
+  <h3>🍋 Limonadas</h3>
+  <div class="productos">
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdcoEboqoc_eP3zOrONNXTMMidkZlmdMY4kA&s"><div class="info"><strong>Limonada Tradicional</strong><span>$40 MXN</span><button onclick="agregar('Limonada Tradicional',40)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkeNeeRwGhBRTJxaQPhLe6cizRcgucZiC6DA&s"><div class="info"><strong>Limonada Fresa</strong><span>$49 MXN</span><button onclick="agregar('Limonada Fresa',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH0IqLdF9uNR_oVzl5v_iWFp-q16XfT6-Fbg&s"><div class="info"><strong>Limonada Jamaica</strong><span>$49 MXN</span><button onclick="agregar('Limonada Jamaica',49)">Agregar</button></div></div>
+       <!-- NUEVAS LIMONADAS -->
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd9w0qpXuAy_tS671ssyEhGaM10Y-PAXgvOQ&s"><div class="info"><strong>Jugo de Naranja</strong><span>$49 MXN</span><button onclick="agregar('Jugo de Naranja',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEBwCwbPyVStqW8bw0WSCS_Kvx8OVyA4gkzA&s"><div class="info"><strong>Limonada de Mango</strong><span>$49 MXN</span><button onclick="agregar('Limonada de Mango',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRPEQA3vRC5RhDvwIN3q7CaKKeb2p72LwpJA&s"><div class="info"><strong>Limonada de Frutos Rojos</strong><span>$49 MXN</span><button onclick="agregar('Limonada de Frutos Rojos',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaQSTvlE9nkx4AMtfskPLr7F3qAK0-_8JKkg&s"><div class="info"><strong>Limonada Pink</strong><span>$49 MXN</span><button onclick="agregar('Limonada Pink',49)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT25iJx85z2hNJ-JEEe2heun5XwUfjnTpYRbA&s"><div class="info"><strong>Naranjada</strong><span>$49 MXN</span><button onclick="agregar('Naranjada',49)">Agregar</button></div></div>
+  </div>
+  </div>
+
+
+
+
+
+
+  <h3>🌶️ Chamoyadas</h3>
+  <div class="productos">
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnARlRXYr5roadoeZhgVy6x6gmthKfEq8oYQ&s"><div class="info"><strong>Chamoyada de Mango</strong><span>$65 MXN</span><button onclick="agregar('Chamoyada de Mango',65)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbyoenp4iA9cXVCIQR__8HijQieoVBXlUtYQ&s"><div class="info"><strong>Chamoyada Picafresa</strong><span>$65 MXN</span><button onclick="agregar('Chamoyada Picafresa',65)">Agregar</button></div></div>
+  </div>
+
+
+
+
+
+
+
+  <h3>🧊 Frappés</h3>
+  <div class="productos">
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Frappé Clásico</strong><span>$59 MXN</span><button onclick="agregarConLeche('Frappé Clásico',59)">Agregar</button></div></div>
+    <div class="card"><img src="https://www.cocinadelirante.com/688x459/filters:format(webp):quality(75)/sites/default/files/styles/gallerie/public/frappe-galletas-oreo-receta.jpg"><div class="info"><strong>Frappé Oreo</strong><span>$65 MXN</span><button onclick="agregarConLeche('Frappé Oreo',65)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbe0EZbMCohxOUj_NQsYqyObGUYZIqhAyG6w&s"><div class="info"><strong>Frappé Nutella</strong><span>$69 MXN</span><button onclick="agregarConLeche('Frappé Nutella',69)">Agregar</button></div></div>
+    
+    <!-- NUEVOS FRAPPÉS -->
+    <div class="card"><img src="https://cdn7.kiwilimon.com/recetaimagen/41477/640x640/56606.jpg.jpg"><div class="info"><strong>Frappé Mazapán</strong><span>$65 MXN</span><button onclick="agregarConLeche('Frappé Mazapán',65)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Frappé Lechera</strong><span>$65 MXN</span><button onclick="agregarConLeche('Frappé Lechera',65)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Frappé Chocolate</strong><span>$65 MXN</span><button onclick="agregarConLeche('Frappé Chocolate',65)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32"><div class="info"><strong>Frappé Matcha</strong><span>$69 MXN</span><button onclick="agregarConLeche('Frappé Matcha',69)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Frappé Crema Irlandesa</strong><span>$65 MXN</span><button onclick="agregarConLeche('Frappé Crema Irlandesa',65)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Frappé Caramelo</strong><span>$65 MXN</span><button onclick="agregarConLeche('Frappé Caramelo',65)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Frappé Baileys</strong><span>$79 MXN</span><button onclick="agregarConLeche('Frappé Baileys',79)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Frappé Pay de Limón</strong><span>$65 MXN</span><button onclick="agregarConLeche('Frappé Pay de Limón',65)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Frappé Chocolate Abuelita</strong><span>$65 MXN</span><button onclick="agregarConLeche('Frappé Chocolate Abuelita',65)">Agregar</button></div></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <h3>🥤 Malteadas</h3>
+  <div class="productos">
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDsTNCvYy_7Hs6KqQ9zN_eqVgXkwfu8qzvYw&s"><div class="info"><strong>Malteada Oreo</strong><span>$59 MXN</span><button onclick="agregarConLeche('Malteada Oreo',59)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3AqItFJA_VoyI6RDt3pSpz5ZdOxDFYHzOww&s"><div class="info"><strong>Malteada Chocolate</strong><span>$59 MXN</span><button onclick="agregarConLeche('Malteada Chocolate',59)">Agregar</button></div></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOYnqlVLoFm9mTz6dVjvnE5op2NlYEbcAO7A&s"><div class="info"><strong>Malteada Fresa</strong><span>$59 MXN</span><button onclick="agregarConLeche('Malteada Fresa',59)">Agregar</button></div></div>
+    
+    <!-- NUEVAS MALTEDAS -->
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Malteada Vainilla</strong><span>$59 MXN</span><button onclick="agregarConLeche('Malteada Vainilla',59)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61"><div class="info"><strong>Malteada Nutella</strong><span>$69 MXN</span><button onclick="agregarConLeche('Malteada Nutella',69)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Malteada Vino Tinto</strong><span>$69 MXN</span><button onclick="agregarConLeche('Malteada Vino Tinto',69)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Malteada Baileys</strong><span>$89 MXN</span><button onclick="agregarConLeche('Malteada Baileys',89)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Malteada Pay de Limón</strong><span>$59 MXN</span><button onclick="agregarConLeche('Malteada Pay de Limón',59)">Agregar</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699"><div class="info"><strong>Malteada Chocolate Abuelita</strong><span>$59 MXN</span><button onclick="agregarConLeche('Malteada Chocolate Abuelita',59)">Agregar</button></div></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="platillos">
+  <h2>🍽️ Platillos</h2>
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRagLZKNewnCm4ISSFSi-xvj_6cYQmG_YuMCA&s">
+      <div class="info">
+        <strong>Milanesa de pollo</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Filete de pollo empanizado acompañado con ensalada, arroz y papas.
+        </p>
+        <span>$89 MXN</span>
+        <button onclick="agregar('Milanesa de pollo',89)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfQque0bNYCRZA7v92V32sNGgVy7C-8rb7Sw&sa">
+      <div class="info">
+        <strong>Milanesa napolitana</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Bistec de pollo empanizado bañado en salsa de tomate con jamón y queso gratinado, acompañado de ensalada y espagueti.
+        </p>
+        <span>$110 MXN</span>
+        <button onclick="agregar('Milanesa napolitana',110)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLjMojU_jidQWBhQi_FpZ_MeZIc57RYFNckA&s">
+      <div class="info">
+        <strong>Pollo con espinacas</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Filete de pollo con espinacas y queso manchego sobre una cama de crema de poblano, acompañado de ensalada y arroz blanco.
+        </p>
+        <span>$125 MXN</span>
+        <button onclick="agregar('Pollo con espinacas',125)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQWRK8WB7-lKWWpMTAEuznvOwjkSoUh6DEQQ&s">
+      <div class="info">
+        <strong>Pollo con camarón</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Bistec de pollo relleno de queso Oaxaca con camarón bañado en salsa Alfredo, acompañado de ensalada y arroz blanco.
+        </p>
+        <span>$140 MXN</span>
+        <button onclick="agregar('Pollo con camarón',140)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRggUCx5tv6bAPzEEictHKybgOU4zF7YPjr_A&s">
+      <div class="info">
+        <strong>Pollo con crema de champiñón</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Bistec de pollo relleno de queso Oaxaca bañado en salsa Alfredo, acompañado de ensalada y arroz blanco.
+        </p>
+        <span>$120 MXN</span>
+        <button onclick="agregar('Pollo con crema de champiñón',120)">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="pastas">
+  <h2>🍝 Pastas</h2>
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDtIzOJUyWskmawH43n_m911MjbBD7Hyz__g&s">
+      <div class="info">
+        <strong>Crema de Champiñones</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarPasta('Crema de Champiñones',89)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY4nnm4u5Ii4rW5jhbq6D2a4ZjO7j64QIIcw&s">
+      <div class="info">
+        <strong>Crema de Chipotle</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarPasta('Crema de Chipotle',89)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgN7znBDKZfBCVzoYLDuz1X9xwG2kX4JUry5t0ljcRKdjziC16j5xUtmP-hQ29KGykbgMWIT-SJcU_XnbCOdvIWl_Ry2U4axa4MF3AoGppDV2DljJ6aklg8gb8glgpGWuyYpDf-UEGCF3P4/s1600/Pasta-Chile+Poblano-3.jpg">
+      <div class="info">
+        <strong>Crema de Poblano</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarPasta('Crema de Poblano',89)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6qMo4Tgre9x6aufufa2SJnTKOzhotVN7opQ&s">
+      <div class="info">
+        <strong>Pasta Alfredo</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarPasta('Pasta Alfredo',89)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.laespanolaaceites.com/wp-content/uploads/2019/05/espaguetis-a-la-bolonesa.jpg">
+      <div class="info">
+        <strong>Pasta Boloñesa</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarPasta('Pasta Boloñesa',89)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4orSsKwLVi9V1yA5DkuRi7c000j4xZABmoQ&s">
+      <div class="info">
+        <strong>Pasta Italiana</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarPasta('Pasta Italiana',89)">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section id="hamburguesas">
+  <h2>🍔 Hamburguesas</h2>
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyslnroCKmeSUbC4i4bCdh_C1X2-bvWKhNSw&s">
+      <div class="info">
+        <strong>Hamburguesa de Res</strong>
+        <span>$65 MXN</span>
+        <button onclick="agregarHamburguesa('Hamburguesa de Res',65)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOBtIEWXR6zLDDlMuzQKBp4GPFDSmGCQDo9w&s">
+      <div class="info">
+        <strong>Hamburguesa de Pollo</strong>
+        <span>$69 MXN</span>
+        <button onclick="agregarHamburguesa('Hamburguesa de Pollo',69)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZN2hf6oEnNTJemNO6K0Elggk3e4erBviuvA&s">
+      <div class="info">
+        <strong>Hamburguesa de Arrachera</strong>
+        <span>$79 MXN</span>
+        <button onclick="agregarHamburguesa('Hamburguesa de Arrachera',79)">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<section id="baguettes">
+  <h2>🥖 Baguettes</h2>
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmy7PFUPPU0lPrD6pZyYIhls7-uPX0_XKhEQ&s">
+      <div class="info">
+        <strong>Baguette de Arrachera</strong>
+        <span>$109 MXN</span>
+        <button onclick="agregarBaguette('Baguette de Arrachera',109)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6g7UBk1tiuzb2vlDB80M6ey3GvOs-7Okm1g&s">
+      <div class="info">
+        <strong>Baguette de Pollo</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarBaguette('Baguette de Pollo Crujiente',89)">Agregar</button>
+      </div>
+    </div>
+
+
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDysfJsmBOvbQ1CfKGZf1CWsrfAleV5onSGw&s">
+      <div class="info">
+        <strong>Baguette de Pollo a la plancha</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarBaguette('Baguette de Pollo a la plancha',89)">Agregar</button>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH8vpk8Axn5vXanAZJg3MLfrEqcGwKRI8UNQ&s">
+      <div class="info">
+        <strong>Baguette de Queso Panela</strong>
+        <span>$89 MXN</span>
+        <button onclick="agregarBaguette('Baguette de Queso Panela',89)">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section id="quesadillas">
+  <h2>🫓 Quesadillas</h2>
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5kC57ggdRu3fYfRoWjYpd7G0YCpJH1m30Og&s">
+      <div class="info">
+        <strong>Quesadilla con arrachera</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Acompañada de ensalada, guacamole y crema.
+        </p>
+        <span>$79 MXN</span>
+        <button onclick="agregar('Quesadilla con arrachera',79)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbWUL6WIU4-eSKi1raqBBU__OS8a_J6a7uTg&s">
+      <div class="info">
+        <strong>Sincronizada</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Acompañada de ensalada, guacamole, crema y chile en vinagre.
+        </p>
+        <span>$69 MXN</span>
+        <button onclick="agregar('Sincronizada',69)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhpDWYXE5k70T0j2MB9hAxKVKuTu6jXkxMAg&s">
+      <div class="info">
+        <strong>Quesadilla de espinacas</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Acompañada de ensalada, guacamole, crema y chile en vinagre.
+        </p>
+        <span>$69 MXN</span>
+        <button onclick="agregar('Quesadilla de espinacas',69)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmlVGrVDAZh3bqoueczkabOzvc_0kJ1Sj4Sw&s">
+      <div class="info">
+        <strong>Quesadilla de champiñones</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Acompañada de ensalada, guacamole, crema y chile en vinagre.
+        </p>
+        <span>$75 MXN</span>
+        <button onclick="agregar('Quesadilla de champiñones',75)">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+<section id="chilaquiles">
+  <h2>🌶️ Chilaquiles</h2>
+  <p style="margin-top:-10px; opacity:.7;">Acompañados con frijoles</p>
+
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL-6KdyxqaOvmNsOIgmVhgjwHC9TkoXeawRw&s">
+      <div class="info">
+        <strong>Chilaquiles Verdes</strong>
+        <span>Desde $69 MXN</span>
+        <button onclick="agregarChilaquiles('Chilaquiles Verdes')">Elegir</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvZq3_DGsvc8uKjsdHcOLFaySUA7O5pG7Qvw&s">
+      <div class="info">
+        <strong>Chilaquiles Rojos</strong>
+        <span>Desde $69 MXN</span>
+        <button onclick="agregarChilaquiles('Chilaquiles Rojos')">Elegir</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyf4GKOqm4sOWv2yDYg9KFrYBSg2kFPfyFVw&s">
+      <div class="info">
+        <strong>Chilaquiles Negros</strong>
+        <span>Desde $69 MXN</span>
+        <button onclick="agregarChilaquiles('Chilaquiles Negros')">Elegir</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<section id="enchiladas">
+  <h2>🌮 Enchiladas</h2>
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqQ36t_tu8hqq9ezliIA5E_hbih-aA8HlUag&s">
+      <div class="info">
+        <strong>Enchiladas suizas</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Cuatro enchiladas en tortilla de harina rellenas de pollo y queso acompañadas de ensalada.
+        </p>
+        <span>$80 MXN</span>
+        <button onclick="abrirModalSuizas()">Elegir salsa</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAT0rp3p0EfrOO930o4uxLG-C2gXhylJcT3g&s">
+      <div class="info">
+        <strong>Enchiladas verdes</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Cuatro enchiladas en tortilla de maíz rellenas de pollo y queso acompañadas de ensalada.
+        </p>
+        <span>$69 MXN</span>
+        <button onclick="agregar('Enchiladas verdes',69)">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<section id="otros">
+  <h2>🍟 Otros</h2>
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcVl7GEi1lGRLoRQkY69iYvWOUk7iwJPYMeg&s">
+      <div class="info">
+        <strong>Club Sándwich</strong>
+        <span>$69 MXN</span>
+        <button onclick="agregar('Club Sándwich',69)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxo7F0vHD_cFud-N41AAS4fzwucZmOLmI45w&s">
+      <div class="info">
+        <strong>Boneless 250g</strong>
+        <span>Desde $120 MXN</span>
+        <button onclick="abrirModalBoneless()">Elegir</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ6_qy5iq14Ew6qpA56Q3A9U_ss982Z4jLsw&s">
+      <div class="info">
+        <strong>Papas a la francesa</strong>
+        <span>$55 MXN</span>
+        <button onclick="agregar('Papas a la francesa',55)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8Zd03Qy3UaMgKCzvrrYnf-KysN2-csoFbew&s">
+      <div class="info">
+        <strong>Papas gajo</strong>
+        <span>$65 MXN</span>
+        <button onclick="agregar('Papas gajo',65)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHshbVpuvFgUYEs4zaFFjLe-ZJ7Wq1O2N0qw&s">
+      <div class="info">
+        <strong>Dedos de queso</strong>
+        <span>$65 MXN</span>
+        <button onclick="agregar('Dedos de queso',65)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://twicpics.moulinex.es/https://sebplatform.api.groupe-seb.com/statics/6742d59d-d748-44d5-a0d5-2fee875fcec3.png?w=1920&fit=scale&twic=v1/quality=70/resize=1600">
+      <div class="info">
+        <strong>Aros de cebolla</strong>
+        <span>$60 MXN</span>
+        <button onclick="agregar('Aros de cebolla',60)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://cordon-green.com/wp-content/uploads/2024/09/recetas-nuggets-con-papas.webp">
+      <div class="info">
+        <strong>Nuggets con papas</strong>
+        <span>$59 MXN</span>
+        <button onclick="agregar('Nuggets con papas',59)">Agregar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCgig8vqTZTTjWV_SDI5A8KtafHQSQklqTrA&s">
+      <div class="info">
+        <strong>Papas grill</strong>
+        <span>$69 MXN</span>
+        <button onclick="agregar('Papas grill',69)">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="ensaladas">
+  <h2>🥗 Ensaladas</h2>
+  <div class="productos">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+      <div class="info">
+        <strong>Ensalada Tradicional</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Mezcla de lechuga, zanahoria rallada, pepino, jitomate, cebolla y aguacate.
+        </p>
+        <span>$69 MXN</span>
+        <button onclick="agregarEnsalada('Ensalada Tradicional',69)">Agregar proteína</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd">
+      <div class="info">
+        <strong>Ensalada de Frutos Secos y Rojos</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Mezcla de lechugas, zanahoria rallada, pepino, jitomate, cherry, almendra, nuez, arándanos y fresa.
+        </p>
+        <span>$79 MXN</span>
+        <button onclick="agregarEnsalada('Ensalada de Frutos Secos y Rojos',79)">Agregar proteína</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1551248429-40975aa4de74">
+      <div class="info">
+        <strong>Ensalada de Manzana</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Mezcla de lechugas, zanahoria rallada, pepino, manzana, nuez y miel.
+        </p>
+        <span>$69 MXN</span>
+        <button onclick="agregarEnsalada('Ensalada de Manzana',69)">Agregar proteína</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1589647363585-f4a7d3877b10">
+      <div class="info">
+        <strong>Ensalada de Espinaca y Brócoli</strong>
+        <p style="font-size:12px; color:#ccc;">
+          Mezcla de lechugas, espinaca, brócoli, pasta y tomate cherry.
+        </p>
+        <span>$79 MXN</span>
+        <button onclick="agregarEnsalada('Ensalada de Espinaca y Brócoli',79)">Agregar proteína</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="postres">
+  <h2>🍰 Postres</h2>
+  <div class="productos">
+    
+    <!-- POSTRES SIN OPCIONES -->
+
+    
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPU0TwnkdBpokOxiXOzNlds9a1VFK2LhK8EA&s"><div class="info"><strong>Helado Frito</strong><span>$45 MXN</span><button onclick="agregar('Helado Frito',45)">Agregar</button></div></div>
+    
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEJ-hN7IQJKaVeA_cKHBZz0T4Xc38PKxI_7Q&s"><div class="info"><strong>Pay de Queso</strong><span>$39 MXN</span><button onclick="agregar('Pay de Queso',39)">Agregar</button></div></div>
+    
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC8h-tPYGgfhpbYuarmuIXeqBoYO3kuMWCGw&s"><div class="info"><strong>Affogato</strong><span>$59 MXN</span><button onclick="agregar('Afogato',59)">Agregar</button></div></div>
+    
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT01uj6dCeBeULZuFQ_peH30cHzYxJkXn0i4g&s"><div class="info"><strong>Panque de Limón</strong><span>$35 MXN</span><button onclick="agregar('Panque de Limón',35)">Agregar</button></div></div>
+    
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzwZGRb7CunK94rb2JzvrLmvfhJP2FNuoowA&s"><div class="info"><strong>Panque de Naranja</strong><span>$35 MXN</span><button onclick="agregar('Panque de Naranja',35)">Agregar</button></div></div>
+    
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU2x2izWD3BbWt2IPnew5-BtfvGZY1KYYvsA&s"><div class="info"><strong>Pan de Elote</strong><span>$35 MXN</span><button onclick="agregar('Pan de Elote',35)">Agregar</button></div></div>
+    
+    <!-- POSTRES CON OPCIONES -->
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqn7Pyo7hJDJfLeyYCTWk9HKiagMAuNrUeCQ&s"><div class="info"><strong>Cheese Cake</strong><span>$59 MXN</span><button onclick="abrirCheeseCakeModal()">Elegir tipo</button></div></div>
+    
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3bskoKd5PnuaIU_0cKRWVHJKgeemaPPM9XQ&s"><div class="info"><strong>Brownie con Helado</strong><span>$59 MXN</span><button onclick="agregarPostreConHelado('Brownie con Helado',59)">Elegir sabor</button></div></div>
+    
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0cPlEf1hjgbhMdas37P8s5EweGORgUnR6sg&s"><div class="info"><strong>Pan Francés con Helado</strong><span>$59 MXN</span><button onclick="agregarPostreConHelado('Pan Francés con Helado',59)">Elegir sabor</button></div></div>
+    
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="crepas">
+
+<h3>PERSONALIZA TU CREPA ($69 MXN)</h3>
+
+<div class="productos">
+  <div class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLpidQOhqM2JaSBa7mpXHih9qJrAQKtJ5bKA&s">
+    <div class="info">
+      <strong>Crepa personalizada</strong>
+      <span>$69 MXN</span>
+      <button onclick="abrirCrepaModal()">Personalizar</button>
+    </div>
+  </div>
+</div>
+</section>
+
+
+
+
+
+
+
+</main>
+
+<div id="carritoBox"></div>
+<button id="btnCarrito" onclick="toggleCarrito()">🛒</button>
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+
+
+
+
+
+
+<script>
+
+
+
+let tempProducto = null;
+
+function agregarConLeche(nombre, precio){
+  tempProducto = { nombre, precio };
+  document.getElementById("milkModal").style.display = "flex";
+}
+
+function confirmarLeche(tipo){
+  const nombreFinal = `${tempProducto.nombre} (${tipo})`;
+  agregar(nombreFinal, tempProducto.precio);
+  cerrarModal();
+}
+
+function cerrarModal(){
+  document.getElementById("milkModal").style.display = "none";
+  tempProducto = null;
+}
+
+
+
+
+
+
+function abrirModalBoneless() {
+  document.getElementById('bonelessModal').style.display = 'flex';
+}
+
+function cerrarBoneless() {
+  document.getElementById('bonelessModal').style.display = 'none';
+}
+
+function confirmarBoneless(nombre, precio) {
+  agregar(nombre, precio);
+  cerrarBoneless();
+}
+
+
+
+
+
+
+
+
+
+let tempChilaquiles = null;
+
+function agregarChilaquiles(nombre){
+  tempChilaquiles = nombre;
+  document.getElementById("chilaquilesModal").style.display = "flex";
+}
+
+function confirmarChilaquiles(tipo, precio){
+  const nombreFinal = `${tempChilaquiles} ${tipo}`;
+  agregar(nombreFinal, precio);
+  cerrarChilaquilesModal();
+}
+
+function cerrarChilaquilesModal(){
+  document.getElementById("chilaquilesModal").style.display = "none";
+  tempChilaquiles = null;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let tempPasta = null;
+
+function agregarPasta(nombre, precio){
+  tempPasta = { nombre, precio };
+  document.getElementById("proteinaModal").style.display = "flex";
+}
+
+function confirmarProteina(tipo, extra){
+  let nombreFinal = tempPasta.nombre;
+  let precioFinal = tempPasta.precio;
+
+  if(tipo !== "Sin proteína"){
+    nombreFinal += ` con ${tipo}`;
+    precioFinal += extra;
+  } else {
+    nombreFinal += " sin proteína";
+  }
+
+  agregar(nombreFinal, precioFinal);
+  cerrarProteinaModal();
+}
+
+function cerrarProteinaModal(){
+  document.getElementById("proteinaModal").style.display = "none";
+  tempPasta = null;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let tempHamburguesa = null;
+
+function agregarHamburguesa(nombre, precio){
+  tempHamburguesa = { nombre, precio };
+  document.getElementById("papasModal").style.display = "flex";
+}
+
+function confirmarPapas(conPapas){
+  let nombreFinal = tempHamburguesa.nombre;
+  let precioFinal = tempHamburguesa.precio;
+
+  if(conPapas){
+    nombreFinal += " con papas";
+    precioFinal += 25;
+  } else {
+    nombreFinal += " sin papas";
+  }
+
+  agregar(nombreFinal, precioFinal);
+  cerrarPapasModal();
+}
+
+function cerrarPapasModal(){
+  document.getElementById("papasModal").style.display = "none";
+  tempHamburguesa = null;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// Variables para ensaladas
+let tempEnsalada = null;
+
+// Función para abrir el modal de proteínas para ensaladas
+function agregarEnsalada(nombre, precio){
+  tempEnsalada = { nombre, precio };
+  document.getElementById("proteinaModal").style.display = "flex";
+}
+
+// Función para confirmar la proteína (se reutiliza la misma que para pastas)
+function confirmarProteina(tipo, extra){
+  let nombreFinal = "";
+  let precioFinal = 0;
+  
+  // Verificar si es una ensalada
+  if(tempEnsalada){
+    nombreFinal = tempEnsalada.nombre;
+    precioFinal = tempEnsalada.precio;
+  } 
+  // Verificar si es una pasta
+  else if(tempPasta){
+    nombreFinal = tempPasta.nombre;
+    precioFinal = tempPasta.precio;
+  }
+
+  if(tipo !== "Sin proteína"){
+    nombreFinal += ` con ${tipo}`;
+    precioFinal += extra;
+  } else {
+    nombreFinal += " sin proteína";
+  }
+
+  agregar(nombreFinal, precioFinal);
+  cerrarProteinaModal();
+}
+
+// Función para cerrar el modal de proteínas
+function cerrarProteinaModal(){
+  document.getElementById("proteinaModal").style.display = "none";
+  tempEnsalada = null;
+  tempPasta = null;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function abrirModalSuizas() {
+  document.getElementById("suizasModal").style.display = "flex";
+}
+
+function cerrarSuizas() {
+  document.getElementById("suizasModal").style.display = "none";
+}
+
+function confirmarSuizas(nombre, precio) {
+  agregar(nombre, precio);
+  cerrarSuizas();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let tempBaguette = null;
+
+function agregarBaguette(nombre, precio){
+  tempBaguette = { nombre, precio };
+  document.getElementById("papasModal").style.display = "flex";
+}
+
+function confirmarPapas(conPapas){
+  let nombreFinal = "";
+  let precioFinal = 0;
+
+  if(tempHamburguesa){
+    nombreFinal = tempHamburguesa.nombre;
+    precioFinal = tempHamburguesa.precio;
+  }
+
+  if(tempBaguette){
+    nombreFinal = tempBaguette.nombre;
+    precioFinal = tempBaguette.precio;
+  }
+
+  if(conPapas){
+    nombreFinal += " con papas";
+    precioFinal += 25;
+  } else {
+    nombreFinal += " sin papas";
+  }
+
+  agregar(nombreFinal, precioFinal);
+  cerrarPapasModal();
+}
+
+function cerrarPapasModal(){
+  document.getElementById("papasModal").style.display = "none";
+  tempHamburguesa = null;
+  tempBaguette = null;
+}
+
+
+
+
+
+
+
+
+
+
+// ===== VARIABLES Y FUNCIONES PARA POSTRES =====
+
+let tempPostreHelado = null;
+let tempPrecioHelado = null;
+
+// Función para abrir modal de Cheese Cake
+function abrirCheeseCakeModal() {
+  document.getElementById('cheeseCakeModal').style.display = 'flex';
+}
+
+function cerrarCheeseCakeModal() {
+  document.getElementById('cheeseCakeModal').style.display = 'none';
+}
+
+function confirmarCheeseCake(tipo, precio) {
+  agregar(tipo, precio);
+  cerrarCheeseCakeModal();
+}
+
+// Función para postres con helado
+function agregarPostreConHelado(nombre, precio) {
+  tempPostreHelado = nombre;
+  tempPrecioHelado = precio;
+  document.getElementById("heladoModal").style.display = "flex";
+}
+
+function cerrarHeladoModal() {
+  document.getElementById("heladoModal").style.display = "none";
+  tempPostreHelado = null;
+  tempPrecioHelado = null;
+}
+
+function confirmarHelado(sabor) {
+  const nombreFinal = `${tempPostreHelado} con helado de ${sabor}`;
+  agregar(nombreFinal, tempPrecioHelado);
+  cerrarHeladoModal();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+let carrito = {}, total = 0;
+
+function agregar(n,p){ carrito[n]=(carrito[n]||0)+1; total+=p; renderCarrito(); }
+function quitar(n,p){ if(!carrito[n])return; carrito[n]--; total-=p; if(carrito[n]<=0)delete carrito[n]; renderCarrito(); }
+
+
+function renderCarrito(){
+  const box = document.getElementById("carritoBox");
+  box.innerHTML = "<h3>🛒 Tu pedido</h3>";
+
+  Object.keys(carrito).forEach(n=>{
+    const precio = obtenerPrecio(n);
+    const llevaLeche = n.includes("(Leche");
+
+    box.innerHTML += `<div class="item">
+      <span>${n}</span>
+      <span>x${carrito[n]}</span>
+
+      ${
+        llevaLeche 
+        ? `<span style="opacity:.4;font-size:12px">+</span>
+           <span style="opacity:.4;font-size:12px">−</span>`
+        : `<button onclick="agregar('${n}',${precio})">+</button>
+           <button onclick="quitar('${n}',${precio})">−</button>`
+      }
+
+      <button onclick="eliminar('${n}',${precio})">❌</button>
+    </div>`;
+  });
+
+  box.innerHTML += `<div class="total">Total: $${total} MXN</div>
+  <div class="form">
+    <input id="nombre" placeholder="Nombre">
+    <input id="telefono" placeholder="Teléfono del cliente">
+    <select id="tipo"><option>Envío a domicilio</option><option>Recoger en tienda</option></select>
+    <input id="direccion" placeholder="Dirección">
+    <input id="referencia" placeholder="Referencia del domicilio">
+    <textarea id="notas" placeholder="Notas"></textarea>
+    <button class="btn-enviar" onclick="enviarPedido()">Enviar WhatsApp</button>
+    <button onclick="descargarFactura()">📄 Descargar recibo</button>
+  </div>`;
+}
+
+
+
+
+
+
+
+function obtenerPrecio(n){
+  const limpio = n.replace(/\s*\(.*?\)\s*/g, ""); // quita (Leche entera) o (Leche deslactosada)
+
+  return {
+    // Cafés
+    "Espresso":29,
+    "Café Americano":29,
+    "Café de Olla":29,
+    "Chocolate Caliente":29,
+    "Tés":25,
+
+    // Refrescos
+    "Coca-Cola":25,
+    "Coca-Cola Light":25,
+    "Sprite":20,
+    "Sidral Mundet":20,
+    "Agua Mineral":27,
+    "Agua Natural":15,
+
+    // Lattes
+    "Latte Tiramisú":55,
+    "Latte Oreo":49,
+    "Capuccino":49,
+    "Latte Nutella":59,
+    "Latte Mazapán":49,
+    "Latte de Horchata":49,
+"Latte de Frutos Rojos":49,
+"Latte de Baileys":69,
+
+
+   
+    // Limonadas
+"Limonada Tradicional":40,
+"Limonada Fresa":49,
+"Limonada Jamaica":49,
+"Jugo de Naranja":49,
+"Limonada de Mango":49,
+"Limonada de Frutos Rojos":49,
+"Limonada Pink":49,
+"Naranjada":49,
+
+
+
+// Chamoyadas
+"Chamoyada de Mango":65,
+"Chamoyada Picafresa":65,
+
+
+
+
+    // Frappés
+   "Frappé Clásico":59,
+"Frappé Oreo":65,
+"Frappé Nutella":69,
+"Frappé Mazapán":65,
+"Frappé Lechera":65,
+"Frappé Chocolate":65,
+"Frappé Matcha":69,
+"Frappé Crema Irlandesa":65,
+"Frappé Caramelo":65,
+"Frappé Baileys":79,
+"Frappé Pay de Limón":65,
+"Frappé Chocolate Abuelita":65,
+
+
+
+    // Malteadas
+ "Malteada Oreo":59,
+"Malteada Chocolate":59,
+"Malteada Fresa":59,
+"Malteada Vainilla":59,
+"Malteada Nutella":69,
+"Malteada Vino Tinto":69,
+"Malteada Baileys":89,
+"Malteada Pay de Limón":59,
+"Malteada Chocolate Abuelita":59,
+
+
+
+
+    // Comida
+    
+    "Pechuga Asada":95,
+    "Pasta Alfredo":85,
+    "Hamburguesa Clásica":80,
+    "Baguette de Pollo":75,
+    "Quesadilla de Queso":35,
+    "Chilaquiles Verdes":60,
+    "Enchiladas Rojas":70,
+    "Papas a la Francesa":40,
+    "Pastel de Chocolate":40,
+    "Crepa Dulce":69,
+"Crepa Salada":69,
+
+
+
+
+
+"Hamburguesa de Res":65,
+"Hamburguesa de Pollo":69,
+"Hamburguesa de Arrachera":79,
+"Hamburguesa de Res con papas":90,
+"Hamburguesa de Pollo con papas":94,
+"Hamburguesa de Arrachera con papas":104,
+"Hamburguesa de Res sin papas":65,
+"Hamburguesa de Pollo sin papas":69,
+"Hamburguesa de Arrachera sin papas":79,
+
+
+
+
+
+// Baguettes
+"Baguette de Arrachera":109,
+"Baguette de Pollo Crujiente":89,
+"Baguette de Pollo a la plancha":89,
+"Baguette de Queso Panela":89,
+
+"Baguette de Arrachera con papas":134,
+"Baguette de Pollo Crujiente con papas":114,
+"Baguette de Pollo a la plancha con papas":114,
+"Baguette de Queso Panela con papas":114,
+
+"Baguette de Arrachera sin papas":109,
+"Baguette de Pollo Crujiente sin papas":89,
+"Baguette de Pollo a la plancha sin papas":89,
+"Baguette de Queso Panela sin papas":89,
+
+
+
+
+
+
+
+// Pastas base
+"Crema de Champiñones":89,
+"Crema de Chipotle":89,
+"Crema de Poblano":89,
+"Pasta Alfredo":89,
+"Pasta Boloñesa":89,
+"Pasta Italiana":89,
+
+// Pastas con proteína
+"Crema de Champiñones con Pollo Crujiente":109,
+"Crema de Champiñones con Pollo a la plancha":109,
+"Crema de Champiñones con Arrachera":119,
+"Crema de Champiñones con Camarón":119,
+"Crema de Champiñones con Queso panela":109,
+
+"Crema de Chipotle con Pollo Crujiente":109,
+"Crema de Chipotle con Pollo a la plancha":109,
+"Crema de Chipotle con Arrachera":119,
+"Crema de Chipotle con Camarón":119,
+"Crema de Chipotle con Queso panela":109,
+
+"Crema de Poblano con Pollo Crujiente":109,
+"Crema de Poblano con Pollo a la plancha":109,
+"Crema de Poblano con Arrachera":119,
+"Crema de Poblano con Camarón":119,
+"Crema de Poblano con Queso panela":109,
+
+"Pasta Alfredo con Pollo Crujiente":109,
+"Pasta Alfredo con Pollo a la plancha":109,
+"Pasta Alfredo con Arrachera":119,
+"Pasta Alfredo con Camarón":119,
+"Pasta Alfredo con Queso panela":109,
+
+"Pasta Boloñesa con Pollo Crujiente":109,
+"Pasta Boloñesa con Pollo a la plancha":109,
+"Pasta Boloñesa con Arrachera":119,
+"Pasta Boloñesa con Camarón":119,
+"Pasta Boloñesa con Queso panela":109,
+
+"Pasta Italiana con Pollo Crujiente":109,
+"Pasta Italiana con Pollo a la plancha":109,
+"Pasta Italiana con Arrachera":119,
+"Pasta Italiana con Camarón":119,
+"Pasta Italiana con Queso panela":109,
+
+// Sin proteína
+"Crema de Champiñones sin proteína":89,
+"Crema de Chipotle sin proteína":89,
+"Crema de Poblano sin proteína":89,
+"Pasta Alfredo sin proteína":89,
+"Pasta Boloñesa sin proteína":89,
+"Pasta Italiana sin proteína":89,
+
+
+
+
+
+
+// Chilaquiles
+"Chilaquiles Verdes Sencillos":69,
+"Chilaquiles Verdes Con huevo":79,
+"Chilaquiles Verdes Con pollo Crujiente":79,
+"Chilaquiles Verdes Con pollo a la plancha":79,
+"Chilaquiles Verdes Con arrachera":89,
+
+"Chilaquiles Rojos Sencillos":69,
+"Chilaquiles Rojos Con huevo":79,
+"Chilaquiles Rojos Con pollo Crujiente":79,
+"Chilaquiles Rojos Con pollo a la plancha":79,
+"Chilaquiles Rojos Con arrachera":89,
+
+"Chilaquiles Negros Sencillos":69,
+"Chilaquiles Negros Con huevo":79,
+"Chilaquiles Negros Con pollo Crujiente":79,
+"Chilaquiles Negros Con pollo a la plancha":79,
+"Chilaquiles Negros Con arrachera":89,
+
+
+
+
+
+
+// Ensaladas base
+"Ensalada Tradicional":69,
+"Ensalada de Frutos Secos y Rojos":79,
+"Ensalada de Manzana":69,
+"Ensalada de Espinaca y Brócoli":79,
+
+// Ensaladas con proteínas
+"Ensalada Tradicional con Pollo Crujiente":89,
+"Ensalada Tradicional con Pollo a la plancha":89,
+"Ensalada Tradicional con Arrachera":99,
+"Ensalada Tradicional con Camarón":99,
+"Ensalada Tradicional con Queso panela":99,
+"Ensalada Tradicional con Champiñones":89,
+
+"Ensalada de Frutos Secos y Rojos con Pollo Crujiente":99,
+"Ensalada de Frutos Secos y Rojos con Pollo a la plancha":99,
+"Ensalada de Frutos Secos y Rojos con Arrachera":109,
+"Ensalada de Frutos Secos y Rojos con Camarón":109,
+"Ensalada de Frutos Secos y Rojos con Queso panela":99,
+"Ensalada de Frutos Secos y Rojos con Champiñones":99,
+
+"Ensalada de Manzana con Pollo Crujiente":89,
+"Ensalada de Manzana con Pollo a la plancha":89,
+"Ensalada de Manzana con Arrachera":99,
+"Ensalada de Manzana con Camarón":99,
+"Ensalada de Manzana con Queso panela":99,
+"Ensalada de Manzana con Champiñones":89,
+
+"Ensalada de Espinaca y Brócoli con Pollo Crujiente":99,
+"Ensalada de Espinaca y Brócoli con Pollo a la plancha":99,
+"Ensalada de Espinaca y Brócoli con Arrachera":109,
+"Ensalada de Espinaca y Brócoli con Camarón":109,
+"Ensalada de Espinaca y Brócoli con Queso panela":99,
+"Ensalada de Espinaca y Brócoli con Champiñones":99,
+
+// Ensaladas sin proteína
+"Ensalada Tradicional sin proteína":69,
+"Ensalada de Frutos Secos y Rojos sin proteína":79,
+"Ensalada de Manzana sin proteína":69,
+"Ensalada de Espinaca y Brócoli sin proteína":79,
+
+
+
+
+
+// Otros
+"Club Sándwich":69,
+"Boneless 250g sencillos":120,
+"Boneless 250g con papas":145,
+"Papas a la francesa":55,
+"Papas gajo":65,
+"Dedos de queso":65,
+"Aros de cebolla":60,
+"Nuggets con papas":59,
+"Papas grill":69,
+
+
+
+
+// Enchiladas
+"Enchiladas verdes":69,
+"Enchiladas suizas en crema de champiñones":80,
+"Enchiladas suizas en crema de chipotle":80,
+"Enchiladas suizas en salsa verde":80,
+"Enchiladas suizas en salsa roja":80,
+"Enchiladas suizas en crema de poblano":80,
+
+
+
+
+
+// Platillos
+"Milanesa de pollo":89,
+"Milanesa napolitana":110,
+"Pollo con espinacas":125,
+"Pollo con camarón":140,
+"Pollo con crema de champiñón":120,
+
+
+
+
+
+
+
+
+// Postres
+"Pastel de Chocolate":40,
+"Helado Frito":45,
+"Brownie con Helado":59,
+"Brownie con Helado con helado de Fresa":59,
+"Brownie con Helado con helado de Vainilla":59,
+"Brownie con Helado con helado de Chocolate":59,
+"Brownie con Helado con helado de Galleta":59,
+"Cheese Cake de Lotus":59,
+"Cheese Cake de Frutos Rojos":59,
+"Cheese Cake de Tortuga":59,
+"Pay de Queso":39,
+"Afogato":59,
+"Pan Francés con Helado":59,
+"Pan Francés con Helado con helado de Fresa":59,
+"Pan Francés con Helado con helado de Vainilla":59,
+"Pan Francés con Helado con helado de Chocolate":59,
+"Pan Francés con Helado con helado de Galleta":59,
+"Panque de Limón":35,
+"Panque de Naranja":35,
+"Pan de Elote":35,
+
+
+
+
+
+
+
+
+
+// Quesadillas
+"Quesadilla con arrachera":79,
+"Sincronizada":69,
+"Quesadilla de espinacas":69,
+"Quesadilla de champiñones":75,
+
+
+
+
+
+
+  }[limpio] || 0;
+}
+
+
+
+
+
+
+
+
+
+
+function abrirCrepaModal(){
+  document.getElementById("crepaModal").style.display = "flex";
+}
+
+function cerrarCrepaModal(){
+  document.getElementById("crepaModal").style.display = "none";
+}
+
+function confirmarCrepa(){
+  const tipo = document.getElementById("tipoCrepa").value;
+  const checks = document.querySelectorAll("#crepaModal input[type=checkbox]:checked");
+
+  let ingredientes = [];
+  checks.forEach(c => ingredientes.push(c.value));
+
+  let nombreFinal = `Crepa ${tipo}`;
+  if(ingredientes.length){
+    nombreFinal += " (" + ingredientes.join(", ") + ")";
+  }
+
+  agregar(nombreFinal, 69);
+  cerrarCrepaModal();
+
+  // limpiar selección
+  document.querySelectorAll("#crepaModal input[type=checkbox]").forEach(c => c.checked = false);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function eliminar(n,p){
+  if(!carrito[n]) return;
+  total -= carrito[n] * p;
+  delete carrito[n];
+  if(total < 0) total = 0;
+  renderCarrito();
+}
+
+
+function toggleCarrito(){
+  const c=document.getElementById("carritoBox");
+  c.style.display = (c.style.display==="none"||!c.style.display) ? "block" : "none";
+}
+
+function enviarPedido(){
+  const nombre = document.getElementById("nombre").value || "Cliente";
+  const telefono = document.getElementById("telefono").value || "No proporcionado";
+  const dir = document.getElementById("direccion").value || "N/A";
+  const ref = document.getElementById("referencia").value || "";
+  const notas = document.getElementById("notas").value || "";
+  const tipo = document.getElementById("tipo").value;
+
+  const detalle = Object.keys(carrito).map(n=>`${n} x${carrito[n]}`).join(", ");
+  const msg = 
+`Pedido Cafetería El Abuelo
+Cliente: ${nombre}
+Teléfono: ${telefono}
+Tipo: ${tipo}
+Productos: ${detalle}
+Total: $${total} MXN
+Dirección: ${dir}
+Referencia: ${ref}
+Notas: ${notas}`;
+
+  window.open(`https://wa.me/524131012498?text=${encodeURIComponent(msg)}`,"_blank");
+
+}
+
+async function descargarFactura(){
+  if(Object.keys(carrito).length === 0){
+    alert("Carrito vacío");
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const nombre = document.getElementById("nombre").value || "Cliente";
+  const telefono = document.getElementById("telefono").value || "No proporcionado";
+  const dir = document.getElementById("direccion").value || "N/A";
+  const ref = document.getElementById("referencia").value || "N/A";
+  const notas = document.getElementById("notas").value || "N/A";
+  const tipo = document.getElementById("tipo").value;
+
+  let y = 15;
+
+  doc.setFontSize(18);
+  doc.text("CAFETERÍA EL ABUELO", 105, y, { align: "center" });
+  y += 8;
+
+  doc.setFontSize(11);
+  doc.text(`Fecha: ${new Date().toLocaleString()}`, 14, y);
+  y += 6;
+
+  doc.text(`Cliente: ${nombre}`, 14, y);
+  y += 6;
+  doc.text(`Teléfono: ${telefono}`, 14, y);
+  y += 6;
+  doc.text(`Tipo de pedido: ${tipo}`, 14, y);
+  y += 6;
+  doc.text(`Dirección: ${dir}`, 14, y);
+  y += 6;
+  doc.text(`Referencia: ${ref}`, 14, y);
+  y += 6;
+  doc.text(`Notas: ${notas}`, 14, y);
+  y += 10;
+
+  doc.setFontSize(13);
+  doc.text("Detalle del pedido", 14, y);
+  y += 6;
+
+  doc.setFontSize(11);
+  doc.text("Producto", 14, y);
+  doc.text("Cantidad", 130, y);
+  doc.text("Subtotal", 170, y);
+  y += 5;
+
+  doc.line(14, y, 196, y);
+  y += 4;
+
+  Object.keys(carrito).forEach(n => {
+    const precio = obtenerPrecio(n);
+    doc.text(n, 14, y);
+    doc.text(String(carrito[n]), 135, y);
+    doc.text(`$${precio * carrito[n]}`, 170, y);
+    y += 6;
+
+    if (y > 270) { 
+      doc.addPage(); 
+      y = 20; 
+    }
+  });
+
+  y += 5;
+  doc.line(14, y, 196, y);
+  y += 8;
+
+  doc.setFontSize(14);
+  doc.text(`TOTAL A PAGAR: $${total} MXN`, 14, y);
+
+  doc.save("recibo_cafeteria_el_abuelo.pdf");
+}
+
+
+
+function toggleTema(){
+  document.body.classList.toggle("dark");
+  const btn = document.getElementById("toggleTema");
+  btn.innerText = document.body.classList.contains("dark") ? "☀️ Modo normal" : "🌙 Modo oscuro";
+}
+</script>
+
+
+
+
+<footer style="
+  background: #3a1f1b;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 2px solid #8b5a3c;
+">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <h3 style="margin: 0 0 10px 0; font-size: 1.3rem;">CAFETERÍA EL ABUELO</h3>
+    <p style="margin: 5px 0; font-size: 0.95rem; opacity: 0.9;">
+      Propiedad de: Brandon Juárez Vega
+    </p>
+    <p style="margin: 5px 0; font-size: 0.85rem; opacity: 0.7;">
+      © 2026 - Todos los derechos reservados
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+</body>
+</html>
+
